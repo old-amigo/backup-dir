@@ -28,8 +28,14 @@ if [ -d "$destination" ]; then
 else
   echo ""
   echo  -n "  Директория $destination не существует. Создание..."
-  /usr/bin/mkdir -p "$destination"
-  echo "    OK"
+  if ( /usr/bin/mkdir -p "$destination" 2>/dev/null ); then
+      echo "    OK"
+  else
+    echo "    FAIL (on line 31)"
+    echo "Файл $destination существует, невозможно создать директорию"
+    exit
+  fi
+
 fi
 
 if [ "$3" != "" ]; then
