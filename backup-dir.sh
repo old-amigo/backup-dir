@@ -17,14 +17,14 @@ echo -n "  Проверка целевой директории - $source ..."
 if [ -d "$source" ]; then
   echo "    OK"
 else
-  echo "    FAIL (on line 17)"
+  echo "    FAIL (on line $LINENO)"
   printParamsHelp
   exit
 fi
 
 echo -n "  Проверка директории для сохранения бэкапа - $destination"
 if [ "$destination" == "" ]; then
-    echo "    FAIL (on line 26)"
+    echo "    FAIL (on line $LINENO)"
     echo "Не указан путь к директории для сохранения бэкапа"
     printParamsHelp
     exit
@@ -37,7 +37,7 @@ else
   if ( /usr/bin/mkdir -p "$destination" 2>/dev/null ); then
       echo "    OK"
   else
-    echo "    FAIL (on line 37)"
+    echo "    FAIL (on line $LINENO)"
     echo "Файл $destination существует, невозможно создать директорию"
     exit
   fi
@@ -45,7 +45,7 @@ else
 fi
 
 if [ "$3" != "" ]; then
-    echo "  Обнаружены лишние параметры...    FAIL (on line 47)"
+    echo "  Обнаружены лишние параметры...    FAIL (on line $LINENO)"
     printParamsHelp
     exit
 fi
