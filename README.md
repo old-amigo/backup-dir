@@ -18,4 +18,9 @@ Source также может быть символической ссылкой 
 
 <code> backup-dir path/to/source path/to/destination </code>
 
-В директории <code> path/to/destination</code> будет создан архив <code> backup.tar.gz </code>
+В директории <code> path/to/destination</code> будет создан архив в формате
+
+<code><имя_архивируемой_папки>-<дата_создания бекапа_в_формате_iso8601>.tar.gz</code>
+
+
+
