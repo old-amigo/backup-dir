@@ -11,13 +11,23 @@ function printParamsHelp {
 source="$1"
 destination="$2"
 
-echo "Проверка входящих параметров...    "
+echo "Проверка входящих параметров    "
 
-echo -n "  Проверка целевой директории - $source ..."
+echo -n "  Проверка целевой директории - $source    "
+
+if [ -L "$source" ]; then
+  echo ""
+  echo -n "  Обнаружен symlink. Обработка    "
+  source=$(readlink -f "$source")
+  echo "    OK"
+  echo -n "  Проверка целевой директории - $source    "
+fi
+
 if [ -d "$source" ]; then
   echo "    OK"
 else
   echo "    FAIL (on line $LINENO)"
+  echo "Первый параметр не является существующей директорией!"
   printParamsHelp
   exit
 fi
@@ -29,11 +39,12 @@ if [ "$destination" == "" ]; then
     printParamsHelp
     exit
 fi
+
 if [ -d "$destination" ]; then
   echo "    OK"
 else
   echo ""
-  echo  -n "  Директория $destination не существует. Создание..."
+  echo  -n "  Директория $destination не существует. Создание    "
   if ( /usr/bin/mkdir -p "$destination" 2>/dev/null ); then
       echo "    OK"
   else
@@ -41,16 +52,14 @@ else
     echo "Файл $destination существует, невозможно создать директорию"
     exit
   fi
-
 fi
 
 if [ "$3" != "" ]; then
-    echo "  Обнаружены лишние параметры...    FAIL (on line $LINENO)"
+    echo "  Обнаружены лишние параметры    FAIL (on line $LINENO)"
     printParamsHelp
     exit
 fi
 
-
-echo -n "Создание архива целевой директории...    "
+echo -n "Создание архива целевой директории    "
 tar -czf "$destination/backup.tar.gz" "$source" 2>/dev/null
 echo "OK"
