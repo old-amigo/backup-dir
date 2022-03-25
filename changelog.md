@@ -5,8 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
 - Теперь скрипт также может принимать первым параметром символическую ссылку, 
 будет создан бэкап директории по этой ссылке
+
+### Fixed
+- Bсправлено поведение, при котором воссоздается весь путь к source. Теперь все файлы source лежат в корне архива
 
 ## [1.1.0] - 2022-03-24
 ### Added
