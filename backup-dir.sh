@@ -60,6 +60,8 @@ if [ "$3" != "" ]; then
     exit
 fi
 
-echo -n "Создание архива целевой директории    "
-tar -C "$source" -czf "$destination/backup.tar.gz" . 2>/dev/null
+archiveName=$(basename "$source")-$(date +%F-T%T%:z).tar.gz
+
+echo -n "Создание архива $archiveName целевой директории    "
+tar -C "$source" -czf "$destination/$archiveName" . 2>/dev/null
 echo "OK"
