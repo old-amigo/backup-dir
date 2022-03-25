@@ -1,6 +1,7 @@
 # backup dir
 
-Скрипт, создающий бэкап (архив tar.gz) директории источника (source) в папке назначения (destination).
+Скрипт, создающий бэкап (архив tar.gz) директории источника (source) в директории назначения (destination).
+Source также может быть символической ссылкой на директорию.
 
 ## installation
 
@@ -17,4 +18,4 @@
 
 <code> backup-dir path/to/source path/to/destination </code>
 
-В директории <code> path/to/destination </code> будет создан архив <code> backup.tar.gz </code>
+В директории <code> path/to/destination</code> будет создан архив <code> backup.tar.gz </code>
