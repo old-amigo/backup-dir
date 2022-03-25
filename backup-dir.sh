@@ -61,5 +61,5 @@ if [ "$3" != "" ]; then
 fi
 
 echo -n "Создание архива целевой директории    "
-tar -czf "$destination/backup.tar.gz" "$source" 2>/dev/null
+tar -C "$source" -czf "$destination/backup.tar.gz" . 2>/dev/null
 echo "OK"
